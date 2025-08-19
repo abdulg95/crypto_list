@@ -129,7 +129,7 @@ https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest
 1. Clone the repository
 ```bash
 git clone <repository-url>
-cd crypto_tracker2
+cd crypto_list
 ```
 
 2. Install dependencies
