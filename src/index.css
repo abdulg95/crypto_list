@@ -30,28 +30,145 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
+/* App Layout */
+.app {
+  min-height: 100vh;
   background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
+
+/* Header Styles */
+.header {
+  background-color: #2a2a2a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid #3a3a3a;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+.header-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.header-subtitle {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #a0a0a0;
+}
+
+/* Main Content */
+.main-content {
+  padding: 2rem;
+}
+
+/* Crypto List Styles */
+.crypto-list {
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.crypto-header {
+  display: grid;
+  grid-template-columns: 80px 200px 150px 120px 150px 150px;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #3a3a3a;
+  font-weight: 600;
+  color: #ffffff;
+  border-bottom: 1px solid #4a4a4a;
+}
+
+.crypto-item {
+  display: grid;
+  grid-template-columns: 80px 200px 150px 120px 150px 150px;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid #4a4a4a;
+  align-items: center;
+}
+
+.crypto-item:hover {
+  background-color: #3a3a3a;
+}
+
+.crypto-rank {
+  font-weight: 600;
+  color: #888;
+}
+
+.crypto-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.crypto-symbol {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.crypto-name {
+  font-size: 0.9rem;
+  color: #a0a0a0;
+}
+
+.crypto-price {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.crypto-change {
+  font-weight: 600;
+}
+
+.crypto-change.positive {
+  color: #00d4aa;
+}
+
+.crypto-change.negative {
+  color: #ff6b6b;
+}
+
+.crypto-market-cap,
+.crypto-volume {
+  color: #a0a0a0;
+}
+
+/* Loading and Error States */
+.loading,
+.error,
+.empty {
+  padding: 2rem;
+  text-align: center;
+  color: #a0a0a0;
+}
+
+.error {
+  color: #ff6b6b;
+}
+
+@media (max-width: 768px) {
+  .crypto-header,
+  .crypto-item {
+    grid-template-columns: 60px 150px 120px 100px;
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+  
+  .header-market-cap,
+  .header-volume,
+  .crypto-market-cap,
+  .crypto-volume {
+    display: none;
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -59,10 +176,52 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
-  a:hover {
-    color: #747bff;
+  
+  .app {
+    background-color: #f5f5f5;
   }
-  button {
-    background-color: #f9f9f9;
+  
+  .header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
   }
-}
+  
+  .header-title {
+    color: #213547;
+  }
+  
+  .header-subtitle {
+    color: #666;
+  }
+  
+  .main-content {
+    background-color: #ffffff;
+  }
+  
+  .crypto-list {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .crypto-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    color: #213547;
+  }
+  
+  .crypto-item {
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .crypto-item:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .crypto-symbol {
+    color: #213547;
+  }
+  
+  .crypto-price {
+    color: #213547;
+  }
+} 
