@@ -9,7 +9,7 @@ export function fetchCryptoData(limit: number = 10) {
   return useQuery({
     queryKey: ['cryptocurrencies', limit],
     queryFn: () => coinMarketCapService.getTopCryptocurrencies(limit),
-    staleTime: 5 * 60 * 1000, 
+    staleTime: 1 * 60 * 1000, 
     refetchInterval: 30 * 1000, 
     retry: 3,
     retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
@@ -21,7 +21,7 @@ export function fetchCryptocurrencyDetails(id: number) {
     queryKey: ['cryptocurrency', id],
     queryFn: () => coinMarketCapService.getCryptocurrencyDetails(id),
     enabled: !!id,
-    staleTime: 2 * 60 * 1000, 
+    staleTime: 1 * 60 * 1000, 
     refetchInterval: 15 * 1000, 
     retry: 3,
     retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),

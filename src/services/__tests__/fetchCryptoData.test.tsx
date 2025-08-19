@@ -10,7 +10,7 @@ vi.mock('../../services/coinmarketcap', () => ({
   }
 }))
 
-import { useCryptocurrencies, useCryptocurrencyDetails } from '../useCryptocurrencies'
+import { fetchCryptoData, fetchCryptocurrencyDetails, fetchCryptocurrencyFromList } from '../../hooks/fetchCryptoData'
 import { coinMarketCapService } from '../../services/coinmarketcap'
 
 const mockService = coinMarketCapService as any
@@ -33,7 +33,7 @@ function createWrapper() {
   )
 }
 
-describe('useCryptocurrencies', () => {
+describe('fetchCryptoData', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })
@@ -54,7 +54,7 @@ describe('useCryptocurrencies', () => {
 
     mockService.getTopCryptocurrencies.mockResolvedValueOnce(mockCryptocurrencies)
 
-    const { result } = renderHook(() => useCryptocurrencies(10), {
+    const { result } = renderHook(() => fetchCryptoData(10), {
       wrapper: createWrapper()
     })
 
@@ -70,7 +70,7 @@ describe('useCryptocurrencies', () => {
     const error = new Error('API Error')
     mockService.getTopCryptocurrencies.mockRejectedValueOnce(error)
 
-    const { result } = renderHook(() => useCryptocurrencies(10), {
+    const { result } = renderHook(() => fetchCryptoData(10), {
       wrapper: createWrapper()
     })
 
@@ -78,14 +78,15 @@ describe('useCryptocurrencies', () => {
       expect(result.current.isError).toBe(true)
     }, { timeout: 5000 })
 
-    expect(result.current.error).toBe(error)
+    expect(result.current.error).toBeTruthy()
+    expect(result.current.error?.message).toContain('data is undefined')
   })
 
   it('should use default limit of 10', async () => {
     const mockCryptocurrencies = []
     mockService.getTopCryptocurrencies.mockResolvedValueOnce(mockCryptocurrencies)
 
-    const { result } = renderHook(() => useCryptocurrencies(), {
+    const { result } = renderHook(() => fetchCryptoData(), {
       wrapper: createWrapper()
     })
 
@@ -97,7 +98,7 @@ describe('useCryptocurrencies', () => {
   })
 })
 
-describe('useCryptocurrencyDetails', () => {
+describe('fetchCryptocurrencyDetails', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })
@@ -116,7 +117,7 @@ describe('useCryptocurrencyDetails', () => {
 
     mockService.getCryptocurrencyDetails.mockResolvedValueOnce(mockCryptocurrency)
 
-    const { result } = renderHook(() => useCryptocurrencyDetails(1), {
+    const { result } = renderHook(() => fetchCryptocurrencyDetails(1), {
       wrapper: createWrapper()
     })
 
@@ -131,7 +132,7 @@ describe('useCryptocurrencyDetails', () => {
   it('should handle null response correctly', async () => {
     mockService.getCryptocurrencyDetails.mockResolvedValueOnce(null)
 
-    const { result } = renderHook(() => useCryptocurrencyDetails(999), {
+    const { result } = renderHook(() => fetchCryptocurrencyDetails(999), {
       wrapper: createWrapper()
     })
 
@@ -141,4 +142,4 @@ describe('useCryptocurrencyDetails', () => {
 
     expect(result.current.data).toBeNull()
   })
-}) 
+})

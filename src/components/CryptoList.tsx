@@ -1,5 +1,8 @@
 import React from 'react'
 import CryptoItem from './CryptoItem'
+import { Loader, Text, Stack, Center } from '@mantine/core'
+
+
 
 // My idea here is that since we are getting a large amount of data from the api we should have a defined structure that will handle the data and display it in a list
 // This will make it easier to add new features and ill also add loading handling and possibly pagination
@@ -19,13 +22,23 @@ interface CryptoListProps {
   cryptocurrencies: Cryptocurrency[]
   loading?: boolean
   error?: string | null
+  onRetry?: () => void
 }
 
-function CryptoList({ cryptocurrencies, loading = false, error = null }: CryptoListProps) {
+function CryptoList({ cryptocurrencies, loading = false, error = null, onRetry}: CryptoListProps) {
+  const message = 'Loading cryptocurrencies...'
   if (loading) {
+    console.log('Loading state is true, showing loader')
     return (
       <div className="crypto-list">
-        <div className="loading">Loading cryptocurrencies...</div>
+       <Center className="loading-spinner">
+      <Stack align="center" gap="md">
+        <Loader size="lg" color="blue" />
+        <Text size="sm" c="dimmed" ta="center">
+            {message}
+          </Text>
+      </Stack>
+    </Center>
       </div>
     )
   }

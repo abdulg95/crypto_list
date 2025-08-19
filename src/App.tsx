@@ -5,7 +5,16 @@ import { fetchCryptoData } from './hooks/fetchCryptoData.ts'
 
 
 function App() {
-  const { data: cryptocurrencies, isLoading, error } = fetchCryptoData(10)
+  const {
+     data: cryptocurrencies,
+     isLoading,
+     error,
+     refetch
+     } = fetchCryptoData(10)
+
+     const handleRetry = () => {
+      refetch()
+     }
 
   return (
     <div className="app">
@@ -18,6 +27,7 @@ function App() {
             cryptocurrencies={cryptocurrencies || []}
             loading={isLoading}
             error={error?.message || null}
+            onRetry={handleRetry}
           />
       </main>
     </div>

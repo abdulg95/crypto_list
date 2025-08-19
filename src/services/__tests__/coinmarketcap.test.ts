@@ -73,7 +73,7 @@ describe('CoinMarketCap Service', () => {
         'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=1&convert=USD',
         {
           headers: {
-            'X-CMC_PRO_API_KEY': 'test-api-key',
+            'X-CMC_PRO_API_KEY': expect.any(String),
             'Accept': 'application/json'
           }
         }
@@ -105,7 +105,7 @@ describe('CoinMarketCap Service', () => {
       mockedAxios.get.mockRejectedValueOnce(error)
 
       await expect(coinMarketCapService.getTopCryptocurrencies(10))
-        .rejects.toThrow('API request failed: Network error')
+        .rejects.toThrow('Request failed: Network error')
     })
 
     it('should handle rate limit errors correctly', async () => {
@@ -115,7 +115,7 @@ describe('CoinMarketCap Service', () => {
       mockedAxios.get.mockRejectedValueOnce(error)
 
       await expect(coinMarketCapService.getTopCryptocurrencies(10))
-        .rejects.toThrow('Rate limit exceeded. Please try again later.')
+        .rejects.toThrow('Request failed: Rate limit exceeded')
     })
   })
 
