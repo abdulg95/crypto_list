@@ -1,5 +1,14 @@
 # Crypto List
 
+demo: 
+about a minute into the video the second crypto item changes price
+if i had time i would have added an animation to make it more visible
+
+
+https://github.com/user-attachments/assets/9aced23b-c983-4002-b189-5a59f989dfd7
+
+
+
 A simple cryptocurrency tracking application that displays the top 10 cryptocurrencies using the CoinMarketCap API.
 
 example payload from api 
