@@ -16,6 +16,7 @@ interface Cryptocurrency {
   change24h: number
   marketCap: number
   volume24h: number
+  image?: string
 }
 
 interface CryptoListProps {
@@ -79,6 +80,7 @@ function CryptoList({ cryptocurrencies, loading = false, error = null, onRetry}:
           change24h={crypto.change24h}
           marketCap={crypto.marketCap}
           volume24h={crypto.volume24h}
+          image={crypto.image}
         />
       ))}
     </div>

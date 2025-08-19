@@ -129,17 +129,40 @@ body {
   font-weight: 600;
 }
 
-.crypto-change.positive {
-  color: #00d4aa;
+/* Target the span elements with 'change' class inside crypto-change div */
+.crypto-change .change.positive {
+  color: #00d4aa !important;
 }
 
-.crypto-change.negative {
-  color: #ff6b6b;
+.crypto-change .change.negative {
+  color: #ff6b6b !important;
+}
+
+/* Alternative selectors for better coverage */
+.change.positive {
+  color: #00d4aa !important;
+}
+
+.change.negative {
+  color: #ff6b6b !important;
 }
 
 .crypto-market-cap,
 .crypto-volume {
   color: #a0a0a0;
+}
+.crypto-symbol-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.crypto-logo {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #3a3a3a;
 }
 
 .loading-spinner {
@@ -300,6 +323,11 @@ body {
   
   .crypto-symbol {
     color: #213547;
+  }
+
+  .crypto-logo {
+    width: 20px;
+    height: 20px;
   }
   
   .crypto-price {

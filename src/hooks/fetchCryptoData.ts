@@ -10,7 +10,7 @@ export function fetchCryptoData(limit: number = 10) {
     queryKey: ['cryptocurrencies', limit],
     queryFn: () => coinMarketCapService.getTopCryptocurrencies(limit),
     staleTime: 1 * 60 * 1000, 
-    refetchInterval: 30 * 1000, 
+    refetchInterval: 60 * 1000, 
     retry: 3,
     retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
   })
